@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.release/
+test-results/
+playwright-report/
+coverage/
+*.log
+*.md
+docs/
+preview.png
+screenshot.jpeg
+.DS_Store
+Thumbs.db

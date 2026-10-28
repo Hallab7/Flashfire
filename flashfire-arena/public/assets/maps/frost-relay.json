@@ -1,0 +1,38 @@
+{
+  "height": 34, "width": 60, "tileheight": 32, "tilewidth": 32, "type": "map", "version": "1.10", "infinite": false,
+  "layers": [
+    {"id":1,"name":"background","type":"objectgroup","objects":[]},
+    {"id":2,"name":"decor_far","type":"objectgroup","objects":[]},
+    {"id":3,"name":"decor_mid","type":"objectgroup","objects":[]},
+    {"id":4,"name":"collision","type":"objectgroup","objects":[
+      {"id":1,"name":"ground","type":"platform","x":0,"y":1044,"width":1920,"height":44},
+      {"id":2,"name":"west","type":"platform","x":80,"y":790,"width":370,"height":44},
+      {"id":3,"name":"relay-a","type":"platform","x":510,"y":610,"width":310,"height":44},
+      {"id":4,"name":"relay-core","type":"platform","x":820,"y":430,"width":300,"height":44},
+      {"id":5,"name":"relay-b","type":"platform","x":1160,"y":610,"width":310,"height":44},
+      {"id":6,"name":"east","type":"platform","x":1470,"y":790,"width":370,"height":44}
+    ]},
+    {"id":5,"name":"one_way_platforms","type":"objectgroup","objects":[{"id":10,"name":"dish-lift","type":"moving","x":875,"y":810,"width":180,"height":34,"properties":[{"name":"travelY","type":"int","value":-250},{"name":"duration","type":"int","value":3200}]}]},
+    {"id":6,"name":"hazards","type":"objectgroup","objects":[
+      {"id":15,"name":"west-ice","type":"ice","x":80,"y":995,"width":650,"height":45},
+      {"id":16,"name":"east-ice","type":"ice","x":1190,"y":995,"width":650,"height":45}
+    ]},
+    {"id":7,"name":"spawn_points","type":"objectgroup","objects":[
+      {"id":20,"name":"west-ground","x":120,"y":970,"point":true},{"id":21,"name":"east-ground","x":1790,"y":970,"point":true},
+      {"id":22,"name":"west-high","x":650,"y":545,"point":true},{"id":23,"name":"east-high","x":1300,"y":545,"point":true},
+      {"id":24,"name":"core-west","x":870,"y":365,"point":true},{"id":25,"name":"core-east","x":1070,"y":365,"point":true}
+    ]},
+    {"id":8,"name":"pickup_points","type":"objectgroup","objects":[
+      {"id":30,"x":250,"y":735,"properties":[{"name":"pickupType","type":"string","value":"health"}]},
+      {"id":31,"x":960,"y":375,"properties":[{"name":"pickupType","type":"string","value":"weapon"},{"name":"weaponId","type":"string","value":"longbow"}]},
+      {"id":32,"x":1680,"y":735,"properties":[{"name":"pickupType","type":"string","value":"fuel"}]}
+    ]},
+    {"id":9,"name":"navigation_nodes","type":"objectgroup","objects":[
+      {"id":40,"name":"west","x":150,"y":970,"point":true},{"id":41,"name":"west-relay","x":650,"y":545,"point":true},{"id":42,"name":"core","x":960,"y":365,"point":true},{"id":43,"name":"east-relay","x":1300,"y":545,"point":true},{"id":44,"name":"east","x":1770,"y":970,"point":true}
+    ]},
+    {"id":10,"name":"navigation_edges","type":"objectgroup","objects":[]},
+    {"id":11,"name":"objectives","type":"objectgroup","objects":[{"id":50,"name":"relay-core","x":880,"y":350,"width":160,"height":120},{"id":51,"name":"west-array","x":520,"y":530,"width":160,"height":120},{"id":52,"name":"east-array","x":1240,"y":530,"width":160,"height":120}]},
+    {"id":12,"name":"foreground","type":"objectgroup","objects":[]},
+    {"id":13,"name":"lighting","type":"objectgroup","objects":[]}
+  ]
+}

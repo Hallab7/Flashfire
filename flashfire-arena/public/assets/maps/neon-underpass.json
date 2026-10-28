@@ -1,0 +1,26 @@
+{
+  "height":30,"width":64,"tileheight":32,"tilewidth":32,"type":"map","version":"1.10","infinite":false,
+  "layers":[
+    {"id":1,"name":"background","type":"objectgroup","objects":[]},{"id":2,"name":"decor_far","type":"objectgroup","objects":[]},{"id":3,"name":"decor_mid","type":"objectgroup","objects":[]},
+    {"id":4,"name":"collision","type":"objectgroup","objects":[
+      {"id":1,"name":"ground","type":"platform","x":0,"y":916,"width":2048,"height":44},{"id":2,"name":"west","type":"platform","x":40,"y":700,"width":350,"height":44},
+      {"id":3,"name":"west-mid","type":"platform","x":420,"y":520,"width":310,"height":44},{"id":4,"name":"center","type":"platform","x":850,"y":680,"width":360,"height":44},
+      {"id":5,"name":"east-mid","type":"platform","x":1320,"y":500,"width":310,"height":44},{"id":6,"name":"east","type":"platform","x":1660,"y":700,"width":350,"height":44}
+    ]},
+    {"id":5,"name":"one_way_platforms","type":"objectgroup","objects":[
+      {"id":10,"name":"west-door","type":"service-door","x":750,"y":760,"width":90,"height":150},{"id":11,"name":"east-door","type":"service-door","x":1210,"y":760,"width":90,"height":150}
+    ]},
+    {"id":6,"name":"hazards","type":"objectgroup","objects":[{"id":15,"name":"express-train","type":"train","x":-420,"y":805,"width":380,"height":90,"properties":[{"name":"speed","type":"int","value":550}]}]},
+    {"id":7,"name":"spawn_points","type":"objectgroup","objects":[
+      {"id":20,"name":"west-ground","x":120,"y":850,"point":true},{"id":21,"name":"east-ground","x":1910,"y":850,"point":true},{"id":22,"name":"west-high","x":560,"y":455,"point":true},
+      {"id":23,"name":"east-high","x":1470,"y":435,"point":true},{"id":24,"name":"center-west","x":900,"y":615,"point":true},{"id":25,"name":"center-east","x":1150,"y":615,"point":true}
+    ]},
+    {"id":8,"name":"pickup_points","type":"objectgroup","objects":[
+      {"id":30,"x":200,"y":645,"properties":[{"name":"pickupType","type":"string","value":"health"}]},{"id":31,"x":1025,"y":625,"properties":[{"name":"pickupType","type":"string","value":"weapon"},{"name":"weaponId","type":"string","value":"vector9"}]},{"id":32,"x":1810,"y":645,"properties":[{"name":"pickupType","type":"string","value":"armor"}]}
+    ]},
+    {"id":9,"name":"navigation_nodes","type":"objectgroup","objects":[{"id":40,"name":"west","x":130,"y":850,"point":true},{"id":41,"name":"west-mid","x":560,"y":455,"point":true},{"id":42,"name":"center","x":1025,"y":615,"point":true},{"id":43,"name":"east-mid","x":1470,"y":435,"point":true},{"id":44,"name":"east","x":1910,"y":850,"point":true}]},
+    {"id":10,"name":"navigation_edges","type":"objectgroup","objects":[]},
+    {"id":11,"name":"objectives","type":"objectgroup","objects":[{"id":50,"name":"west-platform","x":470,"y":430,"width":160,"height":120},{"id":51,"name":"concourse","x":940,"y":590,"width":170,"height":120},{"id":52,"name":"east-platform","x":1390,"y":410,"width":160,"height":120}]},
+    {"id":12,"name":"foreground","type":"objectgroup","objects":[]},{"id":13,"name":"lighting","type":"objectgroup","objects":[]}
+  ]
+}

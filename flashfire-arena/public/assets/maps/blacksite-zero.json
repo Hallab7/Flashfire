@@ -1,0 +1,25 @@
+{
+  "height":30,"width":60,"tileheight":32,"tilewidth":32,"type":"map","version":"1.10","infinite":false,
+  "layers":[
+    {"id":1,"name":"background","type":"objectgroup","objects":[]},{"id":2,"name":"decor_far","type":"objectgroup","objects":[]},{"id":3,"name":"decor_mid","type":"objectgroup","objects":[]},
+    {"id":4,"name":"collision","type":"objectgroup","objects":[
+      {"id":1,"name":"ground","type":"platform","x":0,"y":916,"width":1920,"height":44},{"id":2,"name":"west","type":"platform","x":50,"y":700,"width":320,"height":44},{"id":3,"name":"west-lab","type":"platform","x":420,"y":500,"width":330,"height":44},
+      {"id":4,"name":"core","type":"platform","x":790,"y":680,"width":340,"height":44},{"id":5,"name":"east-lab","type":"platform","x":1170,"y":500,"width":330,"height":44},{"id":6,"name":"east","type":"platform","x":1550,"y":700,"width":320,"height":44}
+    ]},
+    {"id":5,"name":"one_way_platforms","type":"objectgroup","objects":[
+      {"id":10,"name":"west-security","type":"service-door","x":750,"y":720,"width":70,"height":190},{"id":11,"name":"east-security","type":"service-door","x":1100,"y":720,"width":70,"height":190}
+    ]},
+    {"id":6,"name":"hazards","type":"objectgroup","objects":[
+      {"id":15,"name":"west-laser","type":"laser","x":380,"y":610,"width":390,"height":18},{"id":16,"name":"east-laser","type":"laser","x":1150,"y":610,"width":390,"height":18}
+    ]},
+    {"id":7,"name":"spawn_points","type":"objectgroup","objects":[
+      {"id":20,"name":"west-ground","x":110,"y":850,"point":true},{"id":21,"name":"east-ground","x":1800,"y":850,"point":true},{"id":22,"name":"west-lab","x":570,"y":435,"point":true},
+      {"id":23,"name":"east-lab","x":1330,"y":435,"point":true},{"id":24,"name":"core-west","x":850,"y":615,"point":true},{"id":25,"name":"core-east","x":1070,"y":615,"point":true}
+    ]},
+    {"id":8,"name":"pickup_points","type":"objectgroup","objects":[{"id":30,"x":190,"y":645,"properties":[{"name":"pickupType","type":"string","value":"armor"}]},{"id":31,"x":960,"y":625,"properties":[{"name":"pickupType","type":"string","value":"weapon"},{"name":"weaponId","type":"string","value":"hydra"}]},{"id":32,"x":1730,"y":645,"properties":[{"name":"pickupType","type":"string","value":"health"}]}]},
+    {"id":9,"name":"navigation_nodes","type":"objectgroup","objects":[{"id":40,"name":"west","x":130,"y":850,"point":true},{"id":41,"name":"west-lab","x":570,"y":435,"point":true},{"id":42,"name":"core","x":960,"y":615,"point":true},{"id":43,"name":"east-lab","x":1330,"y":435,"point":true},{"id":44,"name":"east","x":1790,"y":850,"point":true}]},
+    {"id":10,"name":"navigation_edges","type":"objectgroup","objects":[]},
+    {"id":11,"name":"objectives","type":"objectgroup","objects":[{"id":50,"name":"west-lab","x":490,"y":400,"width":160,"height":120},{"id":51,"name":"core","x":880,"y":580,"width":160,"height":120},{"id":52,"name":"east-lab","x":1250,"y":400,"width":160,"height":120}]},
+    {"id":12,"name":"foreground","type":"objectgroup","objects":[]},{"id":13,"name":"lighting","type":"objectgroup","objects":[]}
+  ]
+}

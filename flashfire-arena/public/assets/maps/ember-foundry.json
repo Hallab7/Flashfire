@@ -1,0 +1,28 @@
+{
+  "height": 30, "width": 55, "tileheight": 32, "tilewidth": 32, "type": "map", "version": "1.10", "orientation": "orthogonal", "renderorder": "right-down",
+  "layers": [
+    { "id": 1, "name": "background", "type": "objectgroup", "objects": [] }, { "id": 2, "name": "decor_far", "type": "objectgroup", "objects": [] }, { "id": 3, "name": "decor_mid", "type": "objectgroup", "objects": [] },
+    { "id": 4, "name": "collision", "type": "objectgroup", "objects": [
+      { "id": 1, "name": "ground", "type": "platform", "x": 0, "y": 916, "width": 1760, "height": 44 }, { "id": 2, "name": "west-line", "type": "platform", "x": 90, "y": 710, "width": 400, "height": 44 },
+      { "id": 3, "name": "center-line", "type": "platform", "x": 650, "y": 690, "width": 450, "height": 44 }, { "id": 4, "name": "east-line", "type": "platform", "x": 1280, "y": 710, "width": 390, "height": 44 },
+      { "id": 5, "name": "furnace-west", "type": "platform", "x": 300, "y": 430, "width": 330, "height": 44 }, { "id": 6, "name": "furnace-east", "type": "platform", "x": 1120, "y": 420, "width": 360, "height": 44 },
+      { "id": 7, "name": "upper-rail", "type": "platform", "x": 690, "y": 230, "width": 380, "height": 44 }
+    ] },
+    { "id": 5, "name": "one_way_platforms", "type": "objectgroup", "objects": [] },
+    { "id": 6, "name": "hazards", "type": "objectgroup", "objects": [
+      { "id": 10, "name": "vent-west", "type": "vent", "x": 505, "y": 810, "width": 120, "height": 106 },
+      { "id": 11, "name": "vent-east", "type": "vent", "x": 1135, "y": 810, "width": 120, "height": 106 },
+      { "id": 12, "name": "conveyor", "type": "conveyor", "x": 650, "y": 646, "width": 450, "height": 70, "properties": [{ "name": "speed", "type": "int", "value": 90 }] }
+    ] },
+    { "id": 7, "name": "spawn_points", "type": "objectgroup", "objects": [
+      { "id": 20, "name": "west", "x": 120, "y": 850, "point": true }, { "id": 21, "name": "east", "x": 1640, "y": 850, "point": true }, { "id": 22, "name": "west-high", "x": 420, "y": 365, "point": true },
+      { "id": 23, "name": "east-high", "x": 1320, "y": 355, "point": true }, { "id": 24, "name": "center", "x": 860, "y": 625, "point": true }, { "id": 25, "name": "upper", "x": 870, "y": 165, "point": true }
+    ] },
+    { "id": 8, "name": "pickup_points", "type": "objectgroup", "objects": [
+      { "id": 30, "x": 430, "y": 380, "properties": [{ "name": "pickupType", "type": "string", "value": "health" }] }, { "id": 31, "x": 1320, "y": 370, "properties": [{ "name": "pickupType", "type": "string", "value": "fuel" }] },
+      { "id": 32, "x": 870, "y": 180, "properties": [{ "name": "pickupType", "type": "string", "value": "weapon" }, { "name": "weaponId", "type": "string", "value": "b4rpd" }] }
+    ] },
+    { "id": 9, "name": "navigation_nodes", "type": "objectgroup", "objects": [{ "id": 40, "name": "west", "x": 180, "y": 850, "point": true }, { "id": 41, "name": "west-high", "x": 430, "y": 365, "point": true }, { "id": 42, "name": "center", "x": 870, "y": 625, "point": true }, { "id": 43, "name": "upper", "x": 870, "y": 165, "point": true }, { "id": 44, "name": "east-high", "x": 1320, "y": 355, "point": true }, { "id": 45, "name": "east", "x": 1580, "y": 850, "point": true }] },
+    { "id": 10, "name": "navigation_edges", "type": "objectgroup", "objects": [] }, { "id": 11, "name": "objectives", "type": "objectgroup", "objects": [] }, { "id": 12, "name": "foreground", "type": "objectgroup", "objects": [] }, { "id": 13, "name": "lighting", "type": "objectgroup", "objects": [] }
+  ]
+}

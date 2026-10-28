@@ -1,0 +1,38 @@
+{
+  "name": "flashfire",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "lint": "eslint src tests scripts playwright.config.ts playwright.release.config.ts vite.config.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "content:check": "node --experimental-strip-types scripts/validate-content.ts",
+    "content:freeze": "node --experimental-strip-types scripts/verify-content-freeze.ts",
+    "release:build": "pnpm build && node --experimental-strip-types scripts/package-release.ts",
+    "release:artifact:check": "node --experimental-strip-types scripts/verify-release.ts",
+    "test:release": "playwright test --config=playwright.release.config.ts",
+    "release:verify": "pnpm content:freeze && pnpm release:build && pnpm release:artifact:check && pnpm test:release",
+    "check": "pnpm lint && pnpm test && pnpm content:check && pnpm build"
+  },
+  "dependencies": {
+    "phaser": "^3.90.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
+    "eslint": "^9.39.5",
+    "prettier": "^3.9.10",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.1",
+    "vite": "^7.1.9",
+    "vitest": "^5.0.5"
+  }
+}

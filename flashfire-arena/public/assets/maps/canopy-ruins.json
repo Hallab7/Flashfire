@@ -1,0 +1,29 @@
+{
+  "height": 56, "width": 94, "tileheight": 20, "tilewidth": 20, "type": "map", "version": "1.10", "orientation": "orthogonal", "renderorder": "right-down",
+  "layers": [
+    { "id": 1, "name": "background", "type": "objectgroup", "objects": [] }, { "id": 2, "name": "decor_far", "type": "objectgroup", "objects": [] }, { "id": 3, "name": "decor_mid", "type": "objectgroup", "objects": [] },
+    { "id": 4, "name": "collision", "type": "objectgroup", "objects": [
+      { "id": 1, "name": "ground", "type": "platform", "x": 0, "y": 1076, "width": 1880, "height": 44 }, { "id": 2, "name": "west-low", "type": "platform", "x": 80, "y": 860, "width": 380, "height": 44 },
+      { "id": 3, "name": "east-low", "type": "platform", "x": 1410, "y": 850, "width": 380, "height": 44 }, { "id": 4, "name": "west-mid", "type": "platform", "x": 280, "y": 610, "width": 340, "height": 44 },
+      { "id": 5, "name": "east-mid", "type": "platform", "x": 1260, "y": 590, "width": 350, "height": 44 }, { "id": 6, "name": "west-high", "type": "platform", "x": 120, "y": 330, "width": 330, "height": 44 },
+      { "id": 7, "name": "east-high", "type": "platform", "x": 1430, "y": 300, "width": 320, "height": 44 }, { "id": 8, "name": "summit", "type": "platform", "x": 760, "y": 180, "width": 360, "height": 44 }
+    ] },
+    { "id": 5, "name": "one_way_platforms", "type": "objectgroup", "objects": [
+      { "id": 10, "name": "bridge-west", "type": "breakable", "x": 620, "y": 600, "width": 270, "height": 34, "properties": [{ "name": "breakable", "type": "bool", "value": true }] },
+      { "id": 11, "name": "bridge-east", "type": "breakable", "x": 990, "y": 590, "width": 270, "height": 34, "properties": [{ "name": "breakable", "type": "bool", "value": true }] }
+    ] },
+    { "id": 6, "name": "hazards", "type": "objectgroup", "objects": [] },
+    { "id": 7, "name": "spawn_points", "type": "objectgroup", "objects": [
+      { "id": 20, "name": "west", "x": 140, "y": 1010, "point": true }, { "id": 21, "name": "east", "x": 1740, "y": 1010, "point": true }, { "id": 22, "name": "west-mid", "x": 430, "y": 545, "point": true },
+      { "id": 23, "name": "east-mid", "x": 1430, "y": 525, "point": true }, { "id": 24, "name": "west-high", "x": 280, "y": 265, "point": true }, { "id": 25, "name": "east-high", "x": 1580, "y": 235, "point": true },
+      { "id": 26, "name": "summit", "x": 940, "y": 115, "point": true }
+    ] },
+    { "id": 8, "name": "pickup_points", "type": "objectgroup", "objects": [
+      { "id": 30, "x": 430, "y": 560, "properties": [{ "name": "pickupType", "type": "string", "value": "health" }] }, { "id": 31, "x": 1450, "y": 540, "properties": [{ "name": "pickupType", "type": "string", "value": "fuel" }] },
+      { "id": 32, "x": 940, "y": 130, "properties": [{ "name": "pickupType", "type": "string", "value": "weapon" }, { "name": "weaponId", "type": "string", "value": "longbow" }] },
+      { "id": 33, "x": 940, "y": 1010, "properties": [{ "name": "pickupType", "type": "string", "value": "armor" }] }
+    ] },
+    { "id": 9, "name": "navigation_nodes", "type": "objectgroup", "objects": [{ "id": 40, "name": "west", "x": 180, "y": 1010, "point": true }, { "id": 41, "name": "west-mid", "x": 430, "y": 545, "point": true }, { "id": 42, "name": "west-high", "x": 280, "y": 265, "point": true }, { "id": 43, "name": "summit", "x": 940, "y": 115, "point": true }, { "id": 44, "name": "east-high", "x": 1580, "y": 235, "point": true }, { "id": 45, "name": "east-mid", "x": 1430, "y": 525, "point": true }, { "id": 46, "name": "east", "x": 1740, "y": 1010, "point": true }] },
+    { "id": 10, "name": "navigation_edges", "type": "objectgroup", "objects": [] }, { "id": 11, "name": "objectives", "type": "objectgroup", "objects": [] }, { "id": 12, "name": "foreground", "type": "objectgroup", "objects": [] }, { "id": 13, "name": "lighting", "type": "objectgroup", "objects": [] }
+  ]
+}

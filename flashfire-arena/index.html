@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#07161d" />
+    <title>Flashfire</title>
+  </head>
+  <body>
+    <main id="app">
+      <div id="game-shell">
+        <div id="game"></div>
+
+        <header id="hud" class="hidden" aria-live="polite">
+          <section class="hud-card status-card">
+            <div class="eyebrow">RANGER</div>
+            <div class="meter-row">
+              <span>HP</span>
+              <div class="meter"><i id="health-bar"></i></div>
+              <b id="health-value">100</b>
+            </div>
+            <div class="meter-row armor">
+              <span>ARM</span>
+              <div class="meter"><i id="armor-bar"></i></div>
+              <b id="armor-value">0</b>
+            </div>
+            <div class="meter-row fuel">
+              <span>JET</span>
+              <div class="meter"><i id="fuel-bar"></i></div>
+              <b id="fuel-value">100</b>
+            </div>
+          </section>
+
+          <section class="score-card" aria-label="Match score">
+            <span id="player-score">0</span>
+            <div><small>FIRST TO 12</small><strong id="match-time">03:00</strong></div>
+            <span id="enemy-score">0</span>
+          </section>
+
+          <section class="hud-card weapon-card">
+            <div>
+              <span id="weapon-name">AK-117</span><small id="reload-state">AUTOMATIC</small
+              ><small id="grenade-state">FRAG x3</small>
+            </div>
+            <b id="ammo-value">30 / 120</b>
+          </section>
+        </header>
+
+        <button id="pause-button" class="hidden" type="button" aria-label="Pause" title="Pause">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <div id="kill-feed" aria-live="polite"></div>
+        <div id="damage-flash"></div>
+
+        <section id="start-screen" class="screen-layer">
+          <div class="start-backdrop"></div>
+          <div class="start-content">
+            <p class="kicker">JETPACK DEATHMATCH</p>
+            <h1>FLASH<span>FIRE</span></h1>
+            <p class="match-card">
+              <b>OUTPOST KILO</b><span>4 ENEMIES · 3 MINUTES · 12 KILLS</span>
+            </p>
+            <button id="play-button" type="button"><span>DROP IN</span><kbd>ENTER</kbd></button>
+            <nav class="legal-strip" aria-label="Product information">
+              <span>FLASHFIRE 1.0.0</span><a href="/privacy.html" target="_blank">PRIVACY</a
+              ><a href="/credits.html" target="_blank">CREDITS</a
+              ><a href="/licenses.html" target="_blank">LICENSES</a>
+            </nav>
+          </div>
+        </section>
+
+        <section id="loadout-screen" class="screen-layer lobby-screen hidden">
+          <img id="lobby-map-backdrop" alt="" />
+          <div class="lobby-shade"></div>
+          <header class="lobby-header">
+            <button
+              id="lobby-back-button"
+              class="lobby-icon-button"
+              type="button"
+              aria-label="Back"
+            >
+              <span class="back-icon" aria-hidden="true"></span>
+            </button>
+            <div class="lobby-brand"><b>FLASHFIRE</b><small>COMBAT LOBBY</small></div>
+            <div id="profile-summary" aria-live="polite"></div>
+            <button
+              id="settings-button"
+              class="lobby-icon-button"
+              type="button"
+              aria-label="Open settings"
+              title="Settings"
+            >
+              <span aria-hidden="true">&#9881;</span>
+            </button>
+          </header>
+
+          <div class="lobby-briefing">
+            <p class="kicker">READY FOR DEPLOYMENT</p>
+            <h2 id="lobby-map-name">OUTPOST KILO</h2>
+            <p id="lobby-map-ambience">COASTAL JUNGLE</p>
+          </div>
+
+          <div class="lobby-controls">
+            <button
+              id="arena-selector-button"
+              class="lobby-selection arena-selection"
+              type="button"
+            >
+              <img id="selected-map-image" alt="" />
+              <span
+                ><small>ARENA</small><b id="selected-map-name">OUTPOST KILO</b
+                ><em id="selected-map-mechanic"></em
+              ></span>
+            </button>
+            <button id="mode-selector-button" class="lobby-selection mode-selection" type="button">
+              <span
+                ><small>GAME MODE</small><b id="selected-mode-name">QUICK DEATHMATCH</b
+                ><em id="selected-mode-description"></em
+              ></span>
+            </button>
+            <button id="deploy-button" type="button">START</button>
+          </div>
+
+          <section
+            id="map-modal"
+            class="lobby-modal hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="map-modal-title"
+          >
+            <div class="modal-panel map-modal-panel">
+              <header>
+                <div>
+                  <p class="kicker">ARENA</p>
+                  <h2 id="map-modal-title">SELECT BATTLEGROUND</h2>
+                </div>
+                <button class="modal-close" type="button" aria-label="Close map selection">
+                  &#10005;
+                </button>
+              </header>
+              <div id="map-options" class="map-options"></div>
+            </div>
+          </section>
+
+          <section
+            id="mode-modal"
+            class="lobby-modal hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="mode-modal-title"
+          >
+            <div class="modal-panel mode-modal-panel">
+              <header>
+                <div>
+                  <p class="kicker">RULE SET</p>
+                  <h2 id="mode-modal-title">SELECT GAME MODE</h2>
+                </div>
+                <button class="modal-close" type="button" aria-label="Close mode selection">
+                  &#10005;
+                </button>
+              </header>
+              <div id="mode-options" class="mode-options"></div>
+            </div>
+          </section>
+
+          <section
+            id="settings-modal"
+            class="lobby-modal hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="settings-modal-title"
+          >
+            <div class="modal-panel settings-modal-panel">
+              <header>
+                <div>
+                  <p class="kicker">SYSTEM</p>
+                  <h2 id="settings-modal-title">SETTINGS</h2>
+                </div>
+                <button class="modal-close" type="button" aria-label="Close settings">
+                  &#10005;
+                </button>
+              </header>
+              <nav class="settings-tabs" aria-label="Settings categories">
+                <button class="selected" data-settings-tab="gameplay" type="button">
+                  GAMEPLAY
+                </button>
+                <button data-settings-tab="access" type="button">ACCESS &amp; CONTROLS</button>
+                <button data-settings-tab="audio" type="button">AUDIO</button>
+                <button data-settings-tab="data" type="button">DATA</button>
+              </nav>
+
+              <div class="settings-panel" data-settings-panel="gameplay">
+                <section>
+                  <p class="kicker">DIFFICULTY</p>
+                  <div id="difficulty-options" class="segmented"></div>
+                </section>
+                <section>
+                  <p class="kicker">GRENADE</p>
+                  <div id="grenade-options" class="segmented"></div>
+                </section>
+                <section>
+                  <p class="kicker">PASSIVE PERK</p>
+                  <div id="perk-options" class="segmented"></div>
+                </section>
+                <section>
+                  <p class="kicker">GRAPHICS</p>
+                  <div id="graphics-options" class="segmented"></div>
+                </section>
+                <div class="settings-grid compact-settings">
+                  <label><input id="reduced-motion-toggle" type="checkbox" /> REDUCED MOTION</label>
+                  <label
+                    >CAMERA SHAKE
+                    <input id="camera-shake-slider" type="range" min="0" max="1" step="0.1"
+                  /></label>
+                </div>
+              </div>
+
+              <div class="settings-panel hidden" data-settings-panel="access">
+                <div class="settings-grid">
+                  <label
+                    >COLOR VISION
+                    <select id="color-vision-select">
+                      <option value="default">DEFAULT</option>
+                      <option value="deuteranopia">DEUTERANOPIA</option>
+                      <option value="protanopia">PROTANOPIA</option>
+                      <option value="tritanopia">TRITANOPIA</option>
+                    </select></label
+                  >
+                  <label><input id="left-handed-toggle" type="checkbox" /> LEFT-HANDED TOUCH</label>
+                  <label
+                    >GAMEPAD DEAD ZONE
+                    <input
+                      id="gamepad-deadzone-slider"
+                      type="range"
+                      min="0.05"
+                      max="0.4"
+                      step="0.01"
+                  /></label>
+                  <label
+                    >GAMEPAD SENSITIVITY
+                    <input
+                      id="gamepad-sensitivity-slider"
+                      type="range"
+                      min="0.5"
+                      max="1.8"
+                      step="0.1"
+                  /></label>
+                  <label
+                    >TOUCH AIM SENSITIVITY
+                    <input
+                      id="touch-sensitivity-slider"
+                      type="range"
+                      min="0.5"
+                      max="1.8"
+                      step="0.1"
+                  /></label>
+                  <label
+                    >TOUCH CONTROL SIZE
+                    <input id="touch-size-slider" type="range" min="0.75" max="1.25" step="0.05"
+                  /></label>
+                  <label
+                    >TOUCH CONTROL OPACITY
+                    <input id="touch-opacity-slider" type="range" min="0.35" max="1" step="0.05"
+                  /></label>
+                  <label
+                    ><input id="pickup-contrast-toggle" type="checkbox" /> HIGH-CONTRAST
+                    PICKUPS</label
+                  >
+                </div>
+                <div id="binding-options" class="binding-options"></div>
+              </div>
+
+              <div class="settings-panel hidden" data-settings-panel="audio">
+                <div class="settings-grid audio-settings">
+                  <label
+                    >MASTER
+                    <input id="master-volume-slider" type="range" min="0" max="1" step="0.05"
+                  /></label>
+                  <label
+                    >MUSIC <input id="music-volume-slider" type="range" min="0" max="1" step="0.05"
+                  /></label>
+                  <label
+                    >EFFECTS
+                    <input id="effects-volume-slider" type="range" min="0" max="1" step="0.05"
+                  /></label>
+                  <label
+                    >AMBIENCE
+                    <input id="ambience-volume-slider" type="range" min="0" max="1" step="0.05"
+                  /></label>
+                  <label
+                    >UI <input id="ui-volume-slider" type="range" min="0" max="1" step="0.05"
+                  /></label>
+                </div>
+              </div>
+
+              <div class="settings-panel hidden" data-settings-panel="data">
+                <div class="save-actions">
+                  <button id="export-save-button" type="button">EXPORT SAVE</button>
+                  <button id="import-save-button" type="button">IMPORT SAVE</button>
+                  <button id="reset-save-button" type="button">RESET PROGRESSION</button>
+                  <input id="import-save-input" type="file" accept="application/json" hidden />
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section id="result-screen" class="screen-layer hidden">
+          <div class="result-panel">
+            <p class="kicker">MATCH COMPLETE</p>
+            <h2 id="result-title">VICTORY</h2>
+            <p id="result-score">12 — 7</p>
+            <p id="result-stats"></p>
+            <div class="result-actions">
+              <button id="restart-button" type="button">REMATCH</button>
+              <button id="result-exit-button" class="secondary-action" type="button">EXIT</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="pause-screen" class="screen-layer hidden">
+          <div class="result-panel">
+            <p class="kicker">MATCH PAUSED</p>
+            <h2>HOLD FIRE</h2>
+            <div class="result-actions">
+              <button id="resume-button" type="button">RESUME</button>
+              <button id="pause-exit-button" class="secondary-action" type="button">EXIT</button>
+            </div>
+          </div>
+        </section>
+
+        <div id="weapon-slots" class="hidden" aria-label="Weapon slots">
+          <button type="button" data-weapon-slot="0" aria-label="Equip weapon slot 1">
+            <small>1</small><img alt="" /><span>EMPTY</span>
+          </button>
+          <button type="button" data-weapon-slot="1" aria-label="Equip weapon slot 2">
+            <small>2</small><img alt="" /><span>EMPTY</span>
+          </button>
+        </div>
+        <button id="pickup-prompt" class="hidden" type="button" aria-label="Pick up weapon">
+          <img alt="" />
+          <span><small>PICK UP</small><b></b><em>REPLACES ACTIVE WEAPON</em></span>
+          <kbd>E</kbd>
+        </button>
+        <div id="mobile-controls" class="hidden" aria-hidden="true">
+          <div id="move-pad" class="touch-pad"><i></i></div>
+          <button id="grenade-button" type="button" aria-label="Throw grenade"></button>
+          <div id="aim-pad" class="touch-pad"><i></i></div>
+        </div>
+        <button id="finish-session-button" class="hidden" type="button">END SESSION</button>
+        <section id="orientation-blocker" role="alert" aria-label="Landscape mode required">
+          <div class="rotate-device-icon" aria-hidden="true"></div>
+          <h2>ROTATE YOUR PHONE</h2>
+          <p>Flashfire is playable in landscape mode.</p>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
