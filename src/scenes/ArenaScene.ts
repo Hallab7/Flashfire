@@ -392,6 +392,8 @@ export class ArenaScene extends Phaser.Scene {
   }
 
   pauseForOrientation(): void {
+    this.touch.reset();
+    this.input.keyboard?.resetKeys();
     if (this.matchState.state === 'playing') this.setPaused(true);
   }
 
@@ -466,6 +468,8 @@ export class ArenaScene extends Phaser.Scene {
 
   private setPaused(paused: boolean): void {
     if (paused && this.matchState.state === 'playing') {
+      this.touch.reset();
+      this.input.keyboard?.resetKeys();
       this.matchState.transition('paused');
       this.physics.pause();
       this.time.paused = true;
@@ -1150,7 +1154,10 @@ export class ArenaScene extends Phaser.Scene {
       -Math.cos(player.aimAngle) * lead,
       -Math.sin(player.aimAngle) * lead * 0.45,
     );
-    const mouseFiring = this.input.activePointer.isDown && this.input.activePointer.button === 0;
+    const mouseFiring =
+      this.input.activePointer.isDown &&
+      !this.input.activePointer.wasTouch &&
+      this.input.activePointer.button === 0;
     if (mouseFiring || touch.firing || gamepadFiring) this.fireWeapon(player, time);
     if (touch.grenade || pad?.buttons[4]?.pressed) this.throwGrenade(player);
     if (pad?.buttons[2]?.pressed) this.startReload(player);

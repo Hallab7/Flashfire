@@ -386,6 +386,28 @@ export class SaveRepository {
 
 let browserRepository: SaveRepository | null = null;
 export function getSaveRepository(): SaveRepository {
-  if (!browserRepository) browserRepository = new SaveRepository(window.localStorage);
+  if (!browserRepository) {
+    const values = new Map<string, string>();
+    let storage: StorageLike;
+    try {
+      storage = window.localStorage;
+      // Preserve readable saves if writes are blocked by a full quota or browser policy.
+      const saved = storage.getItem(SAVE_KEY);
+      if (saved !== null) values.set(SAVE_KEY, saved);
+      storage.setItem('flashfire.storage-test', '1');
+      storage.removeItem('flashfire.storage-test');
+    } catch {
+      storage = {
+        getItem: (key) => values.get(key) ?? null,
+        setItem: (key, value) => {
+          values.set(key, value);
+        },
+        removeItem: (key) => {
+          values.delete(key);
+        },
+      };
+    }
+    browserRepository = new SaveRepository(storage);
+  }
   return browserRepository;
 }
