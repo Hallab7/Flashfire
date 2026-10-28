@@ -6,6 +6,7 @@ playwright-report/
 coverage/
 *.log
 *.md
+!README.md
 docs/
 preview.png
 screenshot.jpeg
