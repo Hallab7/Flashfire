@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#07161d" />
+    <title>Skyfire Arena</title>
+  </head>
+  <body>
+    <main id="app">
+      <div id="game-shell">
+        <div id="game"></div>
+
+        <header id="hud" class="hidden" aria-live="polite">
+          <section class="hud-card status-card">
+            <div class="eyebrow">RANGER</div>
+            <div class="meter-row"><span>HP</span><div class="meter"><i id="health-bar"></i></div><b id="health-value">100</b></div>
+            <div class="meter-row fuel"><span>JET</span><div class="meter"><i id="fuel-bar"></i></div><b id="fuel-value">100</b></div>
+          </section>
+
+          <section class="score-card" aria-label="Match score">
+            <span id="player-score">0</span>
+            <div><small>FIRST TO 12</small><strong id="match-time">03:00</strong></div>
+            <span id="enemy-score">0</span>
+          </section>
+
+          <section class="hud-card weapon-card">
+            <div><span id="weapon-name">RIFLE</span><small id="reload-state">AUTOMATIC</small></div>
+            <b id="ammo-value">30 / 120</b>
+          </section>
+        </header>
+
+        <div id="kill-feed" aria-live="polite"></div>
+        <div id="damage-flash"></div>
+
+        <section id="start-screen" class="screen-layer">
+          <div class="start-backdrop"></div>
+          <div class="start-content">
+            <p class="kicker">JETPACK DEATHMATCH</p>
+            <h1>SKYFIRE<br /><span>ARENA</span></h1>
+            <p class="match-card"><b>OUTPOST KILO</b><span>4 ENEMIES · 3 MINUTES · 12 KILLS</span></p>
+            <button id="play-button" type="button"><span>DROP IN</span><kbd>ENTER</kbd></button>
+          </div>
+        </section>
+
+        <section id="result-screen" class="screen-layer hidden">
+          <div class="result-panel">
+            <p class="kicker">MATCH COMPLETE</p>
+            <h2 id="result-title">VICTORY</h2>
+            <p id="result-score">12 — 7</p>
+            <button id="restart-button" type="button">REMATCH</button>
+          </div>
+        </section>
+
+        <div id="mobile-controls" class="hidden" aria-hidden="true">
+          <div id="move-pad" class="touch-pad"><i></i></div>
+          <button id="grenade-button" type="button" aria-label="Throw grenade"></button>
+          <div id="aim-pad" class="touch-pad"><i></i></div>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
