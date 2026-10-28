@@ -1,6 +1,6 @@
 import type { DifficultyId } from '../types/gameplay';
 
-let difficulty: DifficultyId = 'regular';
+let difficulty: DifficultyId = 'recruit';
 
 export function getDifficulty(): DifficultyId {
   return difficulty;

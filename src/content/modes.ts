@@ -24,9 +24,9 @@ export const MODES: Record<ModeId, ModeDefinition> = {
   'quick-deathmatch': {
     id: 'quick-deathmatch',
     displayName: 'Quick Deathmatch',
-    description: 'First to 12 eliminations',
+    description: 'First to 20 eliminations',
     durationSeconds: 180,
-    scoreLimit: 12,
+    scoreLimit: 20,
   },
   'team-deathmatch': {
     id: 'team-deathmatch',

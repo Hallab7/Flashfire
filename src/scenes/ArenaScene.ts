@@ -177,7 +177,7 @@ export class ArenaScene extends Phaser.Scene {
   private timeLeft = MATCH_SECONDS;
   private lastSecond = MATCH_SECONDS;
   private matchEnded = false;
-  private difficulty: DifficultyDefinition = DIFFICULTIES.regular;
+  private difficulty: DifficultyDefinition = DIFFICULTIES.recruit;
   private smokeZones: SmokeZone[] = [];
   private obstacleCache: RectangleObstacle[] = [];
   private navigation = new NavigationGraph([]);
@@ -214,6 +214,7 @@ export class ArenaScene extends Phaser.Scene {
   private supplyDropPoints: PickupPlacement[] = [];
   private supplyDropTimer?: Phaser.Time.TimerEvent;
   private supplyRandom = new SeededRandom(0x51f1);
+  private nextWeaponDropAt = 0;
   private lastSupplyPoint = -1;
   private nearbyWeaponPickup?: PickupSprite;
   private readonly scaleResizeHandler = (gameSize: Phaser.Structs.Size): void => {
@@ -363,6 +364,8 @@ export class ArenaScene extends Phaser.Scene {
       this.masterVolume * this.musicVolume,
     );
     this.matchStartedAt = this.time.now;
+    this.nextWeaponDropAt =
+      this.time.now + this.supplyRandom.between(...this.difficulty.weaponDropCooldownMs);
     this.scheduleNextSupplyDrop(this.supplyRandom.between(3500, 6000));
     this.setupModeObjective();
     this.ui.setTrainingSession(this.currentMode.id === 'training-range');
@@ -884,9 +887,15 @@ export class ArenaScene extends Phaser.Scene {
   }
 
   private spawnSupplyDrop(forcedType?: SupplyDropType, forcedWeaponId?: WeaponId): PickupSprite {
-    const weightedTypes: SupplyDropType[] = ['weapon', 'health', 'armor', 'fuel', 'weapon'];
+    const weightedTypes: SupplyDropType[] =
+      this.time.now >= this.nextWeaponDropAt
+        ? ['weapon', 'health', 'armor', 'fuel', 'weapon']
+        : ['health', 'armor', 'fuel'];
     const type =
       forcedType ?? weightedTypes[Math.floor(this.supplyRandom.next() * weightedTypes.length)];
+    if (type === 'weapon')
+      this.nextWeaponDropAt =
+        this.time.now + this.supplyRandom.between(...this.difficulty.weaponDropCooldownMs);
     let pointIndex = Math.floor(this.supplyRandom.next() * this.supplyDropPoints.length);
     if (pointIndex === this.lastSupplyPoint && this.supplyDropPoints.length > 1)
       pointIndex = (pointIndex + 1) % this.supplyDropPoints.length;
@@ -1647,6 +1656,8 @@ export class ArenaScene extends Phaser.Scene {
     source: ActorSprite,
     bypassArmor = false,
   ): void {
+    if (actor.isPlayer && !source.isPlayer && source !== actor)
+      amount = Math.max(1, Math.round(amount * this.difficulty.botDamageMultiplier));
     let healthDamage = amount;
     if (!bypassArmor && actor.armor > 0) {
       const armorDamage = Math.min(actor.armor, Math.round(amount * 0.5));

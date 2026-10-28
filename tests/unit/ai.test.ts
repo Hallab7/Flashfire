@@ -4,6 +4,7 @@ import { hasLineOfSight, lineIntersectsCircle } from '../../src/ai/BotPerception
 import { simulateDifficulty } from '../../src/ai/DifficultySimulation';
 import { NavigationGraph } from '../../src/ai/NavigationGraph';
 import { DIFFICULTIES, DIFFICULTY_IDS } from '../../src/content/difficulties';
+import { getDifficulty } from '../../src/core/state/DifficultyState';
 import { WEAPONS } from '../../src/content/weapons';
 import { SeededRandom } from '../../src/core/math/seededRandom';
 
@@ -72,6 +73,33 @@ describe('seeded AI', () => {
 });
 
 describe('difficulty validation', () => {
+  it('defaults new sessions to the simplest difficulty', () => {
+    expect(getDifficulty()).toBe('recruit');
+  });
+
+  it('keeps Recruit and Regular forgiving for beginners', () => {
+    expect(DIFFICULTIES.recruit.botReactionMs[0]).toBeGreaterThan(
+      DIFFICULTIES.regular.botReactionMs[0],
+    );
+    expect(DIFFICULTIES.regular.botReactionMs[0]).toBeGreaterThan(
+      DIFFICULTIES.veteran.botReactionMs[0],
+    );
+    expect(DIFFICULTIES.recruit.botHealthMultiplier).toBeLessThan(
+      DIFFICULTIES.regular.botHealthMultiplier,
+    );
+    expect(DIFFICULTIES.regular.botHealthMultiplier).toBeLessThan(1);
+    expect(DIFFICULTIES.recruit.botDamageMultiplier).toBeLessThan(
+      DIFFICULTIES.regular.botDamageMultiplier,
+    );
+    expect(DIFFICULTIES.regular.botDamageMultiplier).toBeLessThan(1);
+    expect(DIFFICULTIES.recruit.weaponDropCooldownMs[0]).toBeGreaterThan(
+      DIFFICULTIES.regular.weaponDropCooldownMs[0],
+    );
+    expect(DIFFICULTIES.regular.weaponDropCooldownMs[0]).toBeGreaterThan(
+      DIFFICULTIES.veteran.weaponDropCooldownMs[0],
+    );
+  });
+
   it('improves reaction and accuracy monotonically across 100 seeded matches', () => {
     const metrics = DIFFICULTY_IDS.map((id) => simulateDifficulty(DIFFICULTIES[id], 100));
     for (let index = 1; index < metrics.length; index += 1) {

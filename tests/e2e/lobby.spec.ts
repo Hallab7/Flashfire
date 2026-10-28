@@ -46,6 +46,7 @@ test('deployment lobby organizes arena, mode, and settings into focused dialogs'
 
   await page.locator('#settings-button').click();
   await expect(page.locator('#settings-modal')).toBeVisible();
+  await expect(page.locator('[data-difficulty-id="recruit"]')).toHaveClass(/selected/);
   await expect(page.locator('.settings-modal-panel')).toHaveCSS('scrollbar-width', 'none');
   await expect(page.locator('[data-settings-panel="gameplay"]')).toBeVisible();
   await page.locator('[data-settings-tab="access"]').click();

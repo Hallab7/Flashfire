@@ -41,6 +41,13 @@ describe('game modes', () => {
     ]);
   });
 
+  it('sets Quick Deathmatch to first-to-20 eliminations', () => {
+    expect(MODES['quick-deathmatch']).toMatchObject({
+      description: 'First to 20 eliminations',
+      scoreLimit: 20,
+    });
+  });
+
   it.each(MODE_IDS)('%s reaches a result state', (modeId) => {
     const runtime = createModeRuntime(modeId);
     if (modeId === 'survival') registerElimination(runtime, 'raiders', true, false);
