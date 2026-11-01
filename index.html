@@ -10,6 +10,13 @@
     <main id="app">
       <div id="game-shell">
         <div id="game"></div>
+        <div class="host-tools">
+          <button id="host-return" aria-label="Return to UTXOPlay" title="Return to UTXOPlay">
+            &#8592;</button
+          ><button id="host-fullscreen" aria-label="Enter fullscreen" title="Enter fullscreen">
+            &#x26F6;
+          </button>
+        </div>
 
         <header id="hud" class="hidden" aria-live="polite">
           <section class="hud-card status-card">
@@ -59,11 +66,11 @@
             <p class="kicker">JETPACK DEATHMATCH</p>
             <h1>FLASH<span>FIRE</span></h1>
             <p class="match-card">
-              <b>OUTPOST KILO</b><span>4 ENEMIES · 3 MINUTES · 12 KILLS</span>
+              <b>OUTPOST KILO</b><span>4 ENEMIES · 3 MINUTES · 20 KILLS</span>
             </p>
             <button id="play-button" type="button"><span>DROP IN</span><kbd>ENTER</kbd></button>
             <nav class="legal-strip" aria-label="Product information">
-              <span>FLASHFIRE 1.0.0</span><a href="/privacy.html" target="_blank">PRIVACY</a
+              <span>FLASHFIRE 1.0.1</span><a href="/privacy.html" target="_blank">PRIVACY</a
               ><a href="/credits.html" target="_blank">CREDITS</a
               ><a href="/licenses.html" target="_blank">LICENSES</a>
             </nav>
@@ -83,7 +90,12 @@
               <span class="back-icon" aria-hidden="true"></span>
             </button>
             <div class="lobby-brand"><b>FLASHFIRE</b><small>COMBAT LOBBY</small></div>
-            <div id="profile-summary" aria-live="polite"></div>
+            <div>
+              <div id="profile-summary" aria-live="polite"></div>
+              <small id="session-note" class="hidden"
+                >Progress lasts for this visit; reloading starts fresh.</small
+              >
+            </div>
             <button
               id="settings-button"
               class="lobby-icon-button"
